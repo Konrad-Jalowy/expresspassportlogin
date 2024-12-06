@@ -12,17 +12,7 @@ const UserController = require('./controllers/userController');
 const MainController = require('./controllers/mainController');
 
 
-const validateAndForward2 = (req, res, next) => {
-    const errors = validationResult(req)
-    if (errors.isEmpty()) {
-      
-      return next();
-    }
-    console.log(errors);
-    
-    req.flash('message', `Register Failed`);
-    return res.redirect('/');
-}
+
 
 const validateAndForward = (req, res, next) => {
     const errors = validationResult(req)
@@ -71,7 +61,7 @@ app.post("/users/login", forwardAuthenticated, UserController.loginValidator, va
 app.post('/users/login', UserController.loginPost);
 
 app.get("/users/register", UserController.registerGet);
-app.post("/users/register", forwardAuthenticated, UserController.registerValidator, validateAndForward2)
+app.post("/users/register", forwardAuthenticated, UserController.registerValidator, UserController.validateAndForwardRegister)
 app.post('/users/register', UserController.registerPost );
 
 app.use(MainController.errorHandler);

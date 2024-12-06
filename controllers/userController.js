@@ -61,6 +61,18 @@ exports.registerPost = catchAsync(async (req, res, next) => {
         password: hashedPassword
      });
     
-    return res.status(201).json({"Msg": "User registered", "User": created})
+    return res.status(201).redirect("/users/login");
   }
 );
+
+exports.validateAndForwardRegister = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+      
+      return next();
+    }
+    console.log(errors);
+    
+    req.flash('message', `Register Failed`);
+    return res.redirect('/');
+}
