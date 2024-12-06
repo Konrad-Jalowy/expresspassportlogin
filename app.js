@@ -11,6 +11,12 @@ const { body, validationResult } = require('express-validator');
 const loginValidator = [
     body('email', 'Please enter an email').isEmail().trim(),
     body('password', 'Please enter password').not().isEmpty(),
+    body('email').custom(async value => {
+        const user = await User.findOne({email: value});
+        if (user === null) {
+          throw new Error('User doesnt exist');
+        }
+      }),
 ];
 
 const validateAndForward = (req, res, next) => {
@@ -20,6 +26,7 @@ const validateAndForward = (req, res, next) => {
       return next();
     }
     console.log(errors);
+    
     req.flash('message', `Login Failed`);
     return res.redirect('/');
 }
