@@ -32,4 +32,8 @@ app.get("/", (req, res) => {
     res.render("welcome");
 });
 
+app.get("/users/login", (req, res) => {
+    res.render("login");
+});
+
 module.exports = app;
