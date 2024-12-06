@@ -85,4 +85,6 @@ app.post('/users/register', async (req, res, next) => {
     return res.status(201).json({"Msg": "User registered", "User": created})
   });
 
+app.use(MainController.errorHandler);
+
 module.exports = app;

@@ -8,3 +8,7 @@ exports.globalFlashMiddleware = function(req, res, next) {
     res.locals.error_msg = req.flash('error_msg');
     next();
   }
+
+exports.errorHandler = (err, req, res, next) => {
+    res.status(500).json({"Error": "Some kind of error occurred."});
+};

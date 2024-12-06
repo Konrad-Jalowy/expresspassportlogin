@@ -3,11 +3,6 @@ const User = require('../models/userModel.js');
 const { body, validationResult } = require('express-validator');
 const passport = require('passport');
 
-exports.errorHandler = (err, req, res, next) => {
-    res.status(500).json({"Error": "Some kind of error occurred."});
-};
-
-
 
 exports.loginValidator = [
     body('email', 'Please enter an email').isEmail().trim(),
