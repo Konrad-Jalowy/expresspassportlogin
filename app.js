@@ -41,14 +41,8 @@ app.get("/", MainController.main);
 
 app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 
-// app.get("/users/login", forwardAuthenticated, UserController.loginGet );
-// app.post("/users/login", forwardAuthenticated, UserController.loginValidator, UserController.validateAndForwardLogin);
-// app.post('/users/login', UserController.loginPost);
-
-// app.get("/users/register", UserController.registerGet);
-// app.post("/users/register", forwardAuthenticated, UserController.registerValidator, UserController.validateAndForwardRegister)
-// app.post('/users/register', UserController.registerPost );
 app.use("/users", UserRouter);
+
 app.use(MainController.errorHandler);
 app.get('*', MainController.notFound);
 
