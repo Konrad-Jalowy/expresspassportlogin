@@ -9,6 +9,7 @@ const app = express();
 const { body, validationResult } = require('express-validator');
 const { ensureAuthenticated, forwardAuthenticated } = require('./auth');
 const UserController = require('./controllers/userController');
+const MainController = require('./controllers/mainController');
 
 
 const validateAndForward2 = (req, res, next) => {
@@ -58,9 +59,9 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use(UserController.globalFlashMiddleware);
+app.use(MainController.globalFlashMiddleware);
 
-app.get("/", UserController.main);
+app.get("/", MainController.main);
 
 app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 

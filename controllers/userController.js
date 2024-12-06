@@ -33,10 +33,6 @@ exports.registerValidator = [
       }),
 ];
 
-exports.main = (req, res) => {
-    res.render("welcome");
-};
-
 exports.dashboard = (req, res) => {
     console.log(req.user)
     res.render('dashboard', {
@@ -60,9 +56,3 @@ exports.loginPost = (req, res, next) => {
       })(req, res, next);
   };
 
-exports.globalFlashMiddleware = function(req, res, next) {
-    res.locals.message = req.flash('message');
-    res.locals.error = req.flash('error');
-    res.locals.error_msg = req.flash('error_msg');
-    next();
-  }
