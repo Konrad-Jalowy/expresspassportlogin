@@ -1,12 +1,28 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const mongoose = require('mongoose');
 const passport = require('passport'); 
 const flash = require('connect-flash');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const User = require('./models/userModel');
 const app = express();
+const { body, validationResult } = require('express-validator');
+
+const loginValidator = [
+    body('email', 'Please enter an email').isEmail().trim(),
+    body('password', 'Please enter password').not().isEmpty(),
+];
+
+const validateAndForward = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+      
+      return next();
+    }
+    console.log(errors);
+    req.flash('message', `Login Failed`);
+    return res.redirect('/');
+}
 
 require('./passport-config')(passport);
 
@@ -31,14 +47,21 @@ app.use(passport.session());
 
 app.use(flash());
 
+app.use(function(req, res, next) {
+    res.locals.message = req.flash('message');
+    res.locals.error = req.flash('error');
+    next();
+  });
+
 app.get("/", (req, res) => {
     res.render("welcome");
 });
 
+
 app.get("/users/login", (req, res) => {
     res.render("login");
 });
-
+app.post("/users/login", loginValidator, validateAndForward);
 app.post('/users/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/',
