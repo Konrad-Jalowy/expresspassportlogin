@@ -41,4 +41,12 @@ app.post('/users/login', (req, res, next) => {
     return res.json({"body": req.body});
   });
 
+app.get("/users/register", (req, res) => {
+    res.render("register");
+});
+
+app.post('/users/register', (req, res, next) => {
+    return res.json({"body": req.body});
+  });
+
 module.exports = app;
