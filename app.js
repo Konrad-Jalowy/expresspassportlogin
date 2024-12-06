@@ -58,12 +58,7 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use(function(req, res, next) {
-    res.locals.message = req.flash('message');
-    res.locals.error = req.flash('error');
-    res.locals.error_msg = req.flash('error_msg');
-    next();
-  });
+app.use(UserController.globalFlashMiddleware);
 
 app.get("/", UserController.main);
 

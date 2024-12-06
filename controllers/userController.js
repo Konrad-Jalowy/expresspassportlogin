@@ -59,3 +59,10 @@ exports.loginPost = (req, res, next) => {
         failureFlash: true
       })(req, res, next);
   };
+
+exports.globalFlashMiddleware = function(req, res, next) {
+    res.locals.message = req.flash('message');
+    res.locals.error = req.flash('error');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+  }
