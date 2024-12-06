@@ -19,6 +19,32 @@ const loginValidator = [
       }),
 ];
 
+
+const registerValidator = [
+    body('email', 'Please enter an email').isEmail().trim(),
+    body('password', 'Please enter password').not().isEmpty(),
+    body('password2', 'Please enter confirm password').not().isEmpty(),
+    body('name', 'Please enter name').not().isEmpty(),
+    body('password').custom((value, { req }) => {
+        if (value !== req.body.password2) {
+          throw new Error('Password confirmation is incorrect');
+        }
+        return true;
+      }),
+];
+
+const validateAndForward2 = (req, res, next) => {
+    const errors = validationResult(req)
+    if (errors.isEmpty()) {
+      
+      return next();
+    }
+    console.log(errors);
+    
+    req.flash('message', `Register Failed`);
+    return res.redirect('/');
+}
+
 const validateAndForward = (req, res, next) => {
     const errors = validationResult(req)
     if (errors.isEmpty()) {
@@ -80,7 +106,7 @@ app.post('/users/login', (req, res, next) => {
 app.get("/users/register", (req, res) => {
     res.render("register");
 });
-
+app.post("/users/register", registerValidator, validateAndForward2)
 app.post('/users/register', async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
