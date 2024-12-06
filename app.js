@@ -3,7 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport'); 
 const flash = require('connect-flash');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
+
 const User = require('./models/userModel');
 const app = express();
 const { body, validationResult } = require('express-validator');
@@ -72,18 +72,7 @@ app.post('/users/login', UserController.loginPost);
 
 app.get("/users/register", UserController.registerGet);
 app.post("/users/register", forwardAuthenticated, UserController.registerValidator, validateAndForward2)
-app.post('/users/register', async (req, res, next) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-    let created = await User.create(
-        { 
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword
-     });
-    
-    return res.status(201).json({"Msg": "User registered", "User": created})
-  });
+app.post('/users/register', UserController.registerPost );
 
 app.use(MainController.errorHandler);
 
