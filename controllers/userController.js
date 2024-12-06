@@ -36,3 +36,10 @@ exports.registerValidator = [
 exports.main = (req, res) => {
     res.render("welcome");
 };
+
+exports.dashboard = (req, res) => {
+    console.log(req.user)
+    res.render('dashboard', {
+      user: req.user
+    })
+}

@@ -67,12 +67,7 @@ app.use(function(req, res, next) {
 
 app.get("/", UserController.main);
 
-app.get('/dashboard', ensureAuthenticated, (req, res) => {
-    console.log(req.user)
-    res.render('dashboard', {
-      user: req.user
-    })
-    });
+app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 
 
 app.get("/users/login", forwardAuthenticated, (req, res) => {
