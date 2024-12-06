@@ -16,3 +16,10 @@ exports.errorHandler = (err, req, res, next) => {
 exports.notFound = function(req, res){
     res.status(404).render("404");
   }
+
+exports.dashboard = (req, res) => {
+    console.log(req.user)
+    res.render('dashboard', {
+      user: req.user
+    })
+}

@@ -28,13 +28,6 @@ exports.registerValidator = [
       }),
 ];
 
-exports.dashboard = (req, res) => {
-    console.log(req.user)
-    res.render('dashboard', {
-      user: req.user
-    })
-}
-
 exports.loginGet = (req, res) => {
     res.render("login");
 };

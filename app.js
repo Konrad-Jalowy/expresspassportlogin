@@ -39,7 +39,7 @@ app.use(MainController.globalFlashMiddleware);
 
 app.get("/", MainController.main);
 
-app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
+app.get('/dashboard', ensureAuthenticated, MainController.dashboard);
 
 app.use("/users", UserRouter);
 
