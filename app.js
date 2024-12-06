@@ -50,4 +50,6 @@ app.post('/users/register', UserController.registerPost );
 
 app.use(MainController.errorHandler);
 
+app.get('*', MainController.notFound);
+
 module.exports = app;
