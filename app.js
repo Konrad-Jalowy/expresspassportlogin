@@ -1,14 +1,15 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
-// const passport = require('passport'); TODO
+const passport = require('passport'); 
 const flash = require('connect-flash');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const User = require('./models/userModel');
 const app = express();
 
-// Passport Config Add Here
+require('./passport-config')(passport);
+
 
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -25,7 +26,8 @@ app.use(
   })
 );
 
-// Passport middleware add here
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 
@@ -38,8 +40,11 @@ app.get("/users/login", (req, res) => {
 });
 
 app.post('/users/login', (req, res, next) => {
-    //passport to be added here
-    return res.json({"body": req.body});
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/users/login',
+        failureFlash: true
+      })(req, res, next);
   });
 
 app.get("/users/register", (req, res) => {
