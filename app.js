@@ -29,7 +29,7 @@ app.use(
 app.use(flash());
 
 app.get("/", (req, res) => {
-    res.render("dashboard");
+    res.render("welcome");
 });
 
 module.exports = app;
