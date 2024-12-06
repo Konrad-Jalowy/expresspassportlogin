@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 // const passport = require('passport'); TODO
 const flash = require('connect-flash');
 const session = require('express-session');
-
+const bcrypt = require('bcrypt');
+const User = require('./models/userModel');
 const app = express();
 
 // Passport Config Add Here
@@ -45,8 +46,17 @@ app.get("/users/register", (req, res) => {
     res.render("register");
 });
 
-app.post('/users/register', (req, res, next) => {
-    return res.json({"body": req.body});
+app.post('/users/register', async (req, res, next) => {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    let created = await User.create(
+        { 
+        name: req.body.name,
+        email: req.body.email,
+        password: hashedPassword
+     });
+    
+    return res.status(201).json({"Msg": "User registered", "User": created})
   });
 
 module.exports = app;
