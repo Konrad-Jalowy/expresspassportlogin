@@ -26,6 +26,12 @@ exports.registerValidator = [
         }
         return true;
       }),
+    body('email').custom(async value => {
+        const user = await User.findOne({email: value});
+        if (user !== null) {
+          throw new Error('Email already in use');
+        }
+      }),
 ];
 
 exports.loginGet = (req, res) => {
