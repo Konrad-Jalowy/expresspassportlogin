@@ -4,7 +4,6 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 
-const User = require('./models/userModel');
 const app = express();
 
 const { ensureAuthenticated, forwardAuthenticated } = require('./auth');
