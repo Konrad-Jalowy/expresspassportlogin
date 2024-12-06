@@ -65,9 +65,7 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.get("/", (req, res) => {
-    res.render("welcome");
-});
+app.get("/", UserController.main);
 
 app.get('/dashboard', ensureAuthenticated, (req, res) => {
     console.log(req.user)

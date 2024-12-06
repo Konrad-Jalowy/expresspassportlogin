@@ -32,3 +32,7 @@ exports.registerValidator = [
         return true;
       }),
 ];
+
+exports.main = (req, res) => {
+    res.render("welcome");
+};
