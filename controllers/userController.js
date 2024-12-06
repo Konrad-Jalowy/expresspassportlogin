@@ -74,7 +74,7 @@ exports.validateAndForwardRegister = (req, res, next) => {
     console.log(errors);
     
     req.flash('message', `Register Failed`);
-    return res.redirect('/');
+    return res.redirect('/users/register');
 }
 
 exports.validateAndForwardLogin = (req, res, next) => {
@@ -86,5 +86,5 @@ exports.validateAndForwardLogin = (req, res, next) => {
     console.log(errors);
     
     req.flash('message', `Login Failed`);
-    return res.redirect('/');
+    return res.redirect('/users/login');
 }

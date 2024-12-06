@@ -40,7 +40,6 @@ app.get("/", MainController.main);
 
 app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 
-
 app.get("/users/login", forwardAuthenticated, UserController.loginGet );
 app.post("/users/login", forwardAuthenticated, UserController.loginValidator, UserController.validateAndForwardLogin);
 app.post('/users/login', UserController.loginPost);
