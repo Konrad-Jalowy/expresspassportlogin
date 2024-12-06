@@ -36,4 +36,9 @@ app.get("/users/login", (req, res) => {
     res.render("login");
 });
 
+app.post('/users/login', (req, res, next) => {
+    //passport to be added here
+    return res.json({"body": req.body});
+  });
+
 module.exports = app;
