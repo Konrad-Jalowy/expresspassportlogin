@@ -72,13 +72,7 @@ app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 
 app.get("/users/login", forwardAuthenticated, UserController.loginGet );
 app.post("/users/login", forwardAuthenticated, UserController.loginValidator, validateAndForward);
-app.post('/users/login', (req, res, next) => {
-    passport.authenticate('local', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/users/login',
-        failureFlash: true
-      })(req, res, next);
-  });
+app.post('/users/login', UserController.loginPost);
 
 app.get("/users/register", UserController.registerGet);
 app.post("/users/register", forwardAuthenticated, UserController.registerValidator, validateAndForward2)
