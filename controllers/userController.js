@@ -43,3 +43,11 @@ exports.dashboard = (req, res) => {
       user: req.user
     })
 }
+
+exports.loginGet = (req, res) => {
+    res.render("login");
+};
+
+exports.registerGet = (req, res) => {
+    res.render("register");
+};

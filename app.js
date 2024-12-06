@@ -70,9 +70,7 @@ app.get("/", UserController.main);
 app.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 
 
-app.get("/users/login", forwardAuthenticated, (req, res) => {
-    res.render("login");
-});
+app.get("/users/login", forwardAuthenticated, UserController.loginGet );
 app.post("/users/login", forwardAuthenticated, UserController.loginValidator, validateAndForward);
 app.post('/users/login', (req, res, next) => {
     passport.authenticate('local', {
@@ -82,9 +80,7 @@ app.post('/users/login', (req, res, next) => {
       })(req, res, next);
   });
 
-app.get("/users/register", (req, res) => {
-    res.render("register");
-});
+app.get("/users/register", UserController.registerGet);
 app.post("/users/register", forwardAuthenticated, UserController.registerValidator, validateAndForward2)
 app.post('/users/register', async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
