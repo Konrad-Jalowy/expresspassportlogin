@@ -19,3 +19,16 @@ exports.loginValidator = [
         }
       }),
 ];
+
+exports.registerValidator = [
+    body('email', 'Please enter an email').isEmail().trim(),
+    body('password', 'Please enter password').not().isEmpty(),
+    body('password2', 'Please enter confirm password').not().isEmpty(),
+    body('name', 'Please enter name').not().isEmpty(),
+    body('password').custom((value, { req }) => {
+        if (value !== req.body.password2) {
+          throw new Error('Password confirmation is incorrect');
+        }
+        return true;
+      }),
+];
