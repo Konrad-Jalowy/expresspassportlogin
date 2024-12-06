@@ -8,7 +8,6 @@ const app = express();
 
 const { ensureAuthenticated, forwardAuthenticated } = require('./auth');
 
-const UserController = require('./controllers/userController');
 const MainController = require('./controllers/mainController');
 const UserRouter = require('./routes/userRouter');
 
