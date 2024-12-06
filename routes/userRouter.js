@@ -11,11 +11,6 @@ router.get("/register", forwardAuthenticated, UserController.registerGet);
 router.post("/register", forwardAuthenticated, UserController.registerValidator, UserController.validateAndForwardRegister)
 router.post('/register', UserController.registerPost );
 
-router.post('/logout', function(req, res, next){
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/users/login');
-    });
-  });
+router.post('/logout', UserController.logout );
 
 module.exports = router;

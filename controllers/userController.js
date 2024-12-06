@@ -81,3 +81,10 @@ exports.validateAndForwardLogin = (req, res, next) => {
     req.flash('message', `Login Failed`);
     return res.redirect('/users/login');
 }
+
+exports.logout = function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/users/login');
+    })
+}
