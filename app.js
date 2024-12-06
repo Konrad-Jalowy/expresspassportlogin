@@ -8,30 +8,8 @@ const User = require('./models/userModel');
 const app = express();
 const { body, validationResult } = require('express-validator');
 const { ensureAuthenticated, forwardAuthenticated } = require('./auth');
-const loginValidator = [
-    body('email', 'Please enter an email').isEmail().trim(),
-    body('password', 'Please enter password').not().isEmpty(),
-    body('email').custom(async value => {
-        const user = await User.findOne({email: value});
-        if (user === null) {
-          throw new Error('User doesnt exist');
-        }
-      }),
-];
+const UserController = require('./controllers/userController');
 
-
-const registerValidator = [
-    body('email', 'Please enter an email').isEmail().trim(),
-    body('password', 'Please enter password').not().isEmpty(),
-    body('password2', 'Please enter confirm password').not().isEmpty(),
-    body('name', 'Please enter name').not().isEmpty(),
-    body('password').custom((value, { req }) => {
-        if (value !== req.body.password2) {
-          throw new Error('Password confirmation is incorrect');
-        }
-        return true;
-      }),
-];
 
 const validateAndForward2 = (req, res, next) => {
     const errors = validationResult(req)
@@ -102,7 +80,7 @@ app.get('/dashboard', ensureAuthenticated, (req, res) => {
 app.get("/users/login", forwardAuthenticated, (req, res) => {
     res.render("login");
 });
-app.post("/users/login", forwardAuthenticated, loginValidator, validateAndForward);
+app.post("/users/login", forwardAuthenticated, UserController.loginValidator, validateAndForward);
 app.post('/users/login', (req, res, next) => {
     passport.authenticate('local', {
         successRedirect: '/dashboard',
@@ -114,7 +92,7 @@ app.post('/users/login', (req, res, next) => {
 app.get("/users/register", (req, res) => {
     res.render("register");
 });
-app.post("/users/register", forwardAuthenticated, registerValidator, validateAndForward2)
+app.post("/users/register", forwardAuthenticated, UserController.registerValidator, validateAndForward2)
 app.post('/users/register', async (req, res, next) => {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
