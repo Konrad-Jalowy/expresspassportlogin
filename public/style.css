@@ -202,3 +202,19 @@ body {
 .register-form .form-group label {
     flex-basis: 220px;
 }
+
+.register-form input[type="submit"]{
+    align-self: center;
+    padding: .5rem 1.2rem;
+    font-size: 1rem;
+    background-color: #6b21a8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #e9d5ff;
+    font-weight: bold;
+    transition: all .5s;
+}
+.register-form input[type="submit"]:hover{
+    background-color: #7e22ce;
+}
