@@ -1,6 +1,8 @@
-<h1>Welcome</h1>
-<a href="/users/login">Login</a>
-<a href="/users/register">Register</a>
-<%if (locals.message.length > 0) { %>
-    <%= locals.message %>
-    <% } %>
+<div class="welcome">
+<h2>Welcome, Guest!</h2>
+<h3>Log in or register to see your dashboard!</h3>
+<div class="buttons">
+    <a href="/users/login">Login</a>
+    <a href="/users/register">Register</a>
+</div>
+</div>
