@@ -3,7 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const passport = require('passport'); 
 const flash = require('connect-flash');
 const session = require('express-session');
-
+const methodOverride = require('method-override');
 const app = express();
 
 const { ensureAuthenticated, forwardAuthenticated } = require('./auth');
@@ -19,7 +19,7 @@ app.set('view engine', 'ejs');
 
 
 app.use(express.urlencoded({ extended: true }));
-
+app.use(methodOverride('_method'));
 
 app.use(
   session({

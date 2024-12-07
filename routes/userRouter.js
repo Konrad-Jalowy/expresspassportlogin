@@ -11,6 +11,6 @@ router.get("/register", forwardAuthenticated, UserController.registerGet);
 router.post("/register", forwardAuthenticated, UserController.registerValidator, UserController.validateAndForwardRegister)
 router.post('/register', UserController.registerPost );
 
-router.post('/logout', UserController.logout );
+router.delete('/logout', UserController.logout );
 
 module.exports = router;
