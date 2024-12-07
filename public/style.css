@@ -166,3 +166,19 @@ body {
     font-size: 4rem;
     cursor: pointer;
 }
+
+.register-form {
+    
+    
+    background-color: #c084fc;
+  width: 50%;
+  margin: auto;
+    margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  color: #5b21b6;
+}
