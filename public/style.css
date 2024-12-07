@@ -62,14 +62,17 @@ body {
 
 .login-form {
     
-    background-color: gainsboro;
-    width: 50%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-   padding: 1rem;
-   gap: 1rem;
-   margin-top: 1rem;
+    background-color: #e9d5ff;
+  width: 50%;
+  margin: auto;
+    margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+  margin-top: 1rem;
+  border-radius: 10px;
+  color: #5b21b6;
 }
 
 .login-form .form-group {
@@ -81,13 +84,16 @@ body {
     align-self: center;
     padding: .5rem 1.2rem;
     font-size: 1rem;
-    background-color: #0284c7;
+    background-color: #6b21a8;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    color: #bae6fd;
+    color: #e9d5ff;
     font-weight: bold;
     transition: all .5s;
+}
+.login-form input[type="submit"]:hover{
+    background-color: #7e22ce;
 }
 
 .login-form .form-group input[type="password"]{
