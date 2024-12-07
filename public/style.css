@@ -25,10 +25,12 @@ body {
 
 .welcome h2 {
     font-size: 3.5rem;
+    color: #7e22ce;
 }
 
 .welcome h3 {
     font-size: 2.5rem;
+    color: #6d28d9;
 }
 
 .welcome .buttons {
@@ -56,4 +58,46 @@ body {
 .buttons button a {
     text-decoration: none;
     color: inherit;
+}
+
+.login-form {
+    
+    background-color: gainsboro;
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+   padding: 1rem;
+   gap: 1rem;
+   margin-top: 1rem;
+}
+
+.login-form .form-group {
+    width: 100%;
+    display: flex;
+}
+
+.login-form input[type="submit"]{
+    align-self: center;
+    padding: .5rem 1.2rem;
+    font-size: 1rem;
+    background-color: #0284c7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #bae6fd;
+    font-weight: bold;
+    transition: all .5s;
+}
+
+.login-form .form-group input[type="password"]{
+    flex-grow: 1;
+}
+
+.login-form .form-group input[type="email"]{
+    flex-grow: 1;
+}
+
+.login-form .form-group label {
+    flex-basis: 70px;
 }
