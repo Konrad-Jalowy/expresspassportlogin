@@ -1,40 +1,11 @@
-<form action="/users/register" method="POST">
-      <label for="name">Name</label>
-      <input
-        type="name"
-        id="name"
-        name="name"
-        placeholder="Enter Name"
-      />
-    
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Enter Email"
-      />
-   
-    
-      <label for="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Create Password"
-      />
-   
-   
-      <label for="password2">Confirm Password</label>
-      <input
-        type="password"
-        id="password2"
-        name="password2"
-        placeholder="Confirm Password"
-      />
-   
-    <input type="submit" value="Register">
-  </form>
-  <%if (locals.message.length > 0) { %>
-    <%= locals.message %>
-    <% } %>
+<%if (error.length > 0) { %>
+    <p>Some kind of error happened. Check your login credentials</p>
+<% } %>
+
+<%if (locals.message.length > 0) { %>
+    <div class="error-message ani-fadein"><p><%= locals.message %></p></div>
+<% } %>
+
+<%- include('partials/registerForm.ejs') %>
+
+<script src="/error-message.js"></script>
