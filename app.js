@@ -16,6 +16,7 @@ require('./passport-config')(passport);
 
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+app.set("layout extractScripts", true)
 app.use(express.static('public'))
 
 app.use(express.urlencoded({ extended: true }));
