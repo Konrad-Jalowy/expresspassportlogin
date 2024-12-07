@@ -3,6 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    background-color: #e2e8f0;
+}
 
 .main-header {
     background-color: #b91c1c;
@@ -12,7 +15,7 @@
 }
 
 .welcome {
-    background-color: aqua;
+    background-color: #e2e8f0;
     margin: auto;
     max-width: 50%;
     display: flex;
@@ -31,7 +34,7 @@
 .welcome .buttons {
     display: flex;
     flex-direction: row;
-    background-color: red;
-    justify-content: space-around;
+    /* background-color: red; */
+    justify-content: space-evenly;
     width:100%
 }
