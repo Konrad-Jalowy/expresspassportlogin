@@ -101,3 +101,49 @@ body {
 .login-form .form-group label {
     flex-basis: 70px;
 }
+
+.ani-fadein {
+    animation: fade-in 1.2s;
+  }
+  
+.ani-fadeout {
+    animation: fade-out 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 100;
+    }
+  }
+  
+  @keyframes fade-out {
+    from {
+      opacity: 100;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .error-message {
+    width: 50%;
+    margin-inline: auto;
+    margin-block: 1rem;
+    
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
+    height: 130px;
+    background-color: rgb(244 63 94);
+    color: rgb(252 231 243);
+    box-shadow: 1px 1px 8px 0px rgb(244 63 94);
+    font-size: 4rem;
+    cursor: pointer;
+}

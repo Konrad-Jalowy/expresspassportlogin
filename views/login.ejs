@@ -2,8 +2,8 @@
     <p>Some kind of error happened. Check your login credentials</p>
 <% } %>
 
-<%- include('partials/loginForm.ejs') %>
-
 <%if (locals.message.length > 0) { %>
-    <%= locals.message %>
+    <div class="error-message ani-fadein"><p><%= locals.message %></p></div>
 <% } %>
+
+<%- include('partials/loginForm.ejs') %>
