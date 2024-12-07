@@ -62,7 +62,8 @@ body {
 
 .login-form {
     
-    background-color: #e9d5ff;
+    
+    background-color: #c084fc;
   width: 50%;
   margin: auto;
     margin-top: auto;
@@ -100,10 +101,20 @@ body {
 
 .login-form .form-group input[type="password"]{
     flex-grow: 1;
+    background-color: #cffafe;
+    background-color: #e9d5ff;
+    border: none;
+    border-radius: 5px;
+    padding: .3rem;
 }
 
 .login-form .form-group input[type="email"]{
     flex-grow: 1;
+    background-color: #cffafe;
+    background-color: #e9d5ff;
+    border: none;
+    border-radius: 5px;
+    padding: .3rem;
 }
 
 .login-form .form-group label {
