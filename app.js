@@ -36,7 +36,7 @@ app.use(flash());
 
 app.use(MainController.globalFlashMiddleware);
 
-app.get("/", MainController.main);
+app.get("/", forwardAuthenticated, MainController.main);
 
 app.get('/dashboard', ensureAuthenticated, MainController.dashboard);
 
